@@ -6,12 +6,41 @@ plugins {
 group = 'com.mechsim'
 version = '0.1.0'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+def javafxVersion = '21.0.1'
+def platform = System.getProperty("os.name").toLowerCase().with {
+    if (contains("win")) "win"
+    else if (contains("mac")) "mac"
+    else if (contains("nux")) "linux"
+    else throw new GradleException("Unsupported OS: $it")
+}
+
 repositories {
     mavenCentral()
 }
 
+configurations {
+    javafx {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
+    // JavaFX dependencies
+    def javafxModules = ['base', 'controls', 'fxml', 'graphics']
+    javafxModules.each { module ->
+        javafx "org.openjfx:javafx-${module}:${javafxVersion}:${platform}"
+        implementation "org.openjfx:javafx-${module}:${javafxVersion}:${platform}"
+    }
+
+    // Testing
+    testImplementation(enforcedPlatform('org.junit:junit-bom:5.10.0'))
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
@@ -21,4 +50,25 @@ application {
 
 test {
     useJUnitPlatform()
+}
+
+// Configure JavaFX module path for both compilation and runtime
+def javaFxOptions = {
+    it.options.compilerArgs += [
+            '--module-path', configurations.javafx.asPath,
+            '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
+}
+
+tasks.withType(JavaCompile).configureEach {
+    doFirst(javaFxOptions)
+}
+
+tasks.named('run') {
+    doFirst {
+        jvmArgs = [
+                '--module-path', configurations.javafx.asPath,
+                '--add-modules', 'javafx.controls,javafx.fxml'
+        ]
+    }
 }

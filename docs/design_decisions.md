@@ -95,3 +95,9 @@ new unit types can be added incrementally.
 
 This document will be updated as new tradeoffs emerge or core systems change.
 
+## 2025-06-28: Switched to JavaFX UI Prototype
+
+- Created branch `mechSim-1`
+- Reason: CLI not user-friendly, planning to expand to GUI anyway
+- Decision: Use JavaFX with Gradle, FXML for clean separation
+- Alternatives considered: Swing, external web frontend, CLI only
