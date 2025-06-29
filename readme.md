@@ -57,7 +57,7 @@ mechSim/
    ./gradlew run
    ```
 
-> By default, the main entry point is `com.mechsim.Main`.
+> By default, the main entry point is `mechsim.Main`.
 
 ---
 

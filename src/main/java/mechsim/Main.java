@@ -1,6 +1,6 @@
-package com.mechsim;
+package mechsim;
 
-import com.mechsim.ui.MainApp;
+import mechsim.ui.MainApp;
 
 public class Main {
     public static void main(String[] args) {

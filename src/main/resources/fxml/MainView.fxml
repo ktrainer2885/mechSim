@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
-      fx:controller="com.mechsim.ui.controller.MainController">
+      fx:controller="mechsim.ui.controller.MainController">
     <Button text="Load Mechs" onAction="#onLoadMechs"/>
     <Button text="Start Battle" onAction="#onStartBattle"/>
     <TextArea fx:id="logArea" prefHeight="400" prefWidth="600"/>
