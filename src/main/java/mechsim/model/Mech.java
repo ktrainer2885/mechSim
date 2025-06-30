@@ -10,10 +10,9 @@ public class Mech {
     private String model;
     private int MULid;
 
-
     private String config;
     private String techBase;
-    private int Era;
+    private int era;
     private String source;
     private String rules;
     private String role;
@@ -186,4 +185,56 @@ public class Mech {
         this.mynomerType = mynomerType;
     }
 
+    public String getConfig() {
+        return config;
+    }
+
+    public void setConfig(String config) {
+        this.config = config;
+    }
+
+    public int getEra() {
+        return era;
+    }
+
+    public void setEra(int era) {
+        this.era = era;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public List<String> getQuirks() {
+        return quirks;
+    }
+
+    public void setQuirks(List<String> quirks) {
+        this.quirks = quirks;
+    }
+
+    @Override
+    public String toString() {
+        return chassis + " " + model;
+    }
 }
