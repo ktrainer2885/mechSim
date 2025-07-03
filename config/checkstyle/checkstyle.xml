@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+    <module name="TreeWalker">
+        <module name="Indentation"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+        <module name="NeedBraces"/>
+        <module name="EqualsHashCode"/>
+        <module name="FinalLocalVariable"/>
+        <module name="EmptyBlock"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoLineWrap"/>
+        <module name="ParenPad"/>
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        <module name="EmptyLineSeparator"/>
+        <module name="MethodName"/>
+        <module name="ParameterName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="TypeName"/>
+        <module name="JavadocType"/>
+        <module name="JavadocMethod"/>
+    </module>
+</module>
