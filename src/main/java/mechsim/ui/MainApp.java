@@ -1,4 +1,4 @@
-package com.mechsim.ui;
+package mechsim.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

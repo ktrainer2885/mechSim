@@ -1,4 +1,4 @@
-package com.mechsim.ui.controller;
+package mechsim.ui.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
