@@ -70,7 +70,7 @@ Design and architecture documents can be found in the `docs/` folder:
 
 ---
 
-## 📈 Future Goals
+## Future Goals
 
 - Team-based simulations (e.g., 4v4, 4v4v4)
 - Tactical AI behavior and ML-driven opponents
@@ -80,7 +80,7 @@ Design and architecture documents can be found in the `docs/` folder:
 
 ---
 
-## 📄 License
+## License
 
 TBD (Private for now or insert open-source license here)
 
