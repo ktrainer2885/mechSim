@@ -135,8 +135,8 @@ They serve as the source of truth for:
 Raw logs are parsed into structured **feature vectors**, where each vector represents:
 
 - A single battle outcome
-- A single mech’s role and result
-- A weapon’s observed behavior
+- A single mechs role and result
+- A weapons observed behavior
 
 Features include:
 
@@ -186,7 +186,7 @@ of subsystems. Key areas of extensibility include:
 
 - AI is abstracted behind a `Controller` interface.
 - You can inject simple scripts, tactical evaluators, or even ML-backed decision makers without touching the core sim.
-- Future: shared memory or “battle context” system for team coordination logic.
+- Future: shared memory or battle context system for team coordination logic.
 
 ### 4. Combat Logging and Output
 
@@ -208,7 +208,7 @@ of subsystems. Key areas of extensibility include:
 
 ## Architecture Diagram Reference
 
-BattleTechSim’s modular architecture is visualized using a Mermaid diagram. It illustrates the flow of data and
+BattleTechSims modular architecture is visualized using a Mermaid diagram. It illustrates the flow of data and
 responsibilities between each major subsystem:
 
 ```mermaid
@@ -368,4 +368,5 @@ The prototype will focus on essential mechanics and structured logging, but the 
 - Model training and evaluation tools (e.g., winner prediction, heat efficiency)
 - Feature visualization and importance tracking
 - Mech optimizer or recommender based on user input
+
 

@@ -65,8 +65,11 @@ mechSim/
 
 Design and architecture documents can be found in the `docs/` folder:
 
-- `architecture.md`
-- `design_decisions.md`
+- `ARCHITECTURE.md`
+- `DESIGN_DECISIONS.md`
+- `ROADMAP.md`
+
+Contributing guidelines are in `CONTRIBUTING.md`.
 
 ---
 
@@ -83,6 +86,7 @@ Design and architecture documents can be found in the `docs/` folder:
 ## License
 
 TBD (Private for now or insert open-source license here)
+
 
 
 
