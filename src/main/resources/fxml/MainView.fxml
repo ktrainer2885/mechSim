@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
       fx:controller="mechsim.ui.controller.MainController">
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="6" alignment="CENTER_LEFT">
+            <Label text="Team 1"/>
+            <TextField fx:id="team1NameField" text="Team 1"/>
+            <Label text="Mech"/>
+            <ComboBox fx:id="team1MechChoice" prefWidth="250"/>
+            <ListView fx:id="team1List" prefHeight="160" prefWidth="250"/>
+        </VBox>
+        <VBox spacing="6" alignment="CENTER_LEFT">
+            <Label text="Team 2"/>
+            <TextField fx:id="team2NameField" text="Team 2"/>
+            <Label text="Mech"/>
+            <ComboBox fx:id="team2MechChoice" prefWidth="250"/>
+            <ListView fx:id="team2List" prefHeight="160" prefWidth="250"/>
+        </VBox>
+    </HBox>
     <Button text="Load Mechs" onAction="#onLoadMechs"/>
+    <Button text="Clear Teams" onAction="#onClearTeams"/>
     <Button text="Start Battle" onAction="#onStartBattle"/>
-    <TextArea fx:id="logArea" prefHeight="400" prefWidth="600"/>
+    <TextArea fx:id="logArea" prefHeight="300" prefWidth="600"/>
 </VBox>
