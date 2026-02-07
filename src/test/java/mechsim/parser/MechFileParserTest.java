@@ -4,13 +4,15 @@ import mechsim.model.Mech;
 import mechsim.model.Weapon;
 import mechsim.util.TestResources;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for parsing .mtf files into Mech objects.
 public class MechFileParserTest {
     @Test
     void testParseHighlander() throws Exception {
@@ -74,5 +76,49 @@ public class MechFileParserTest {
                 weapons.stream().anyMatch(w -> w.getName().equals("Autocannon/10")
                         && w.getLocation().equals("Right Arm"))
         );
+    }
+
+    @Test
+    void testParseIgnoresBadNumbers(@TempDir Path tempDir) throws Exception {
+        final String content = String.join("\n",
+                "Chassis: Highlander",
+                "Model: HGN-733",
+                "Mass: not-a-number",
+                "Engine: bad",
+                "Walk MP: bad",
+                "Jump MP: bad",
+                "Heat Sinks: bad",
+                "Weapons: 0");
+
+        final Path path = tempDir.resolve("BadNumbers.mtf");
+        Files.writeString(path, content);
+
+        final Mech mech = MechFileParser.parse(path);
+
+        assertNotNull(mech);
+        assertEquals("Highlander", mech.getChassis());
+        assertEquals("HGN-733", mech.getModel());
+    }
+
+    @Test
+    void testParseWithMissingOptionalSections(@TempDir Path tempDir) throws Exception {
+        final String content = String.join("\n",
+                "Chassis: TestMech",
+                "Model: TST-1",
+                "Mass: 35",
+                "Engine: 210 Fusion Engine",
+                "Walk MP: 6",
+                "Jump MP: 3");
+
+        final Path path = tempDir.resolve("MissingSections.mtf");
+        Files.writeString(path, content);
+
+        final Mech mech = MechFileParser.parse(path);
+
+        assertNotNull(mech);
+        assertEquals("TestMech", mech.getChassis());
+        assertEquals("TST-1", mech.getModel());
+        assertEquals(0, mech.getWeapons().size());
+        assertEquals(0, mech.getQuirks().size());
     }
 }

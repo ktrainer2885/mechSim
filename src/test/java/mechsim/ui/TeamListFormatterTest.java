@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Tests formatting of team lists with duplicate mechs.
 public class TeamListFormatterTest {
     @Test
     void testDuplicateMechsAreNumbered() {

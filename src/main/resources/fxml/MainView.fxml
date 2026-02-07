@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
       fx:controller="mechsim.ui.controller.MainController">
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="Mech Root"/>
+        <TextField fx:id="mechRootField" prefWidth="520"/>
+        <Button text="Browse..." onAction="#onBrowseMechRoot"/>
+    </HBox>
     <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <Label text="Available Mechs"/>
+            <TreeView fx:id="mechTreeView" prefHeight="340" prefWidth="260"/>
+        </VBox>
         <VBox spacing="6" alignment="CENTER_LEFT">
             <Label text="Team 1"/>
             <TextField fx:id="team1NameField" text="Team 1"/>
-            <Label text="Mech"/>
-            <ComboBox fx:id="team1MechChoice" prefWidth="250"/>
-            <ListView fx:id="team1List" prefHeight="160" prefWidth="250"/>
+            <Button text="Add to Team 1" onAction="#onAddTeam1"/>
+            <Label text="Assigned Mechs"/>
+            <ListView fx:id="team1AssignedList" prefHeight="200" prefWidth="250"/>
         </VBox>
         <VBox spacing="6" alignment="CENTER_LEFT">
             <Label text="Team 2"/>
             <TextField fx:id="team2NameField" text="Team 2"/>
-            <Label text="Mech"/>
-            <ComboBox fx:id="team2MechChoice" prefWidth="250"/>
-            <ListView fx:id="team2List" prefHeight="160" prefWidth="250"/>
+            <Button text="Add to Team 2" onAction="#onAddTeam2"/>
+            <Label text="Assigned Mechs"/>
+            <ListView fx:id="team2AssignedList" prefHeight="200" prefWidth="250"/>
         </VBox>
     </HBox>
-    <Button text="Load Mechs" onAction="#onLoadMechs"/>
     <Button text="Clear Teams" onAction="#onClearTeams"/>
     <Button text="Start Battle" onAction="#onStartBattle"/>
     <TextArea fx:id="logArea" prefHeight="300" prefWidth="600"/>

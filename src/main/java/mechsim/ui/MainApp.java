@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// JavaFX application bootstrap that loads the main FXML view.
 public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

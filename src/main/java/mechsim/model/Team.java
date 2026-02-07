@@ -3,8 +3,10 @@ package mechsim.model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Simple container for a team name and its assigned mechs.
 public class Team {
     private final List<Mech> mechs = new ArrayList<>();
+
     private String name;
 
     public Team(String name) {

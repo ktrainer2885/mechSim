@@ -8,6 +8,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Verifies that mechs can be assigned to teams from parsed files.
 public class TeamAssignmentTest {
     @Test
     void testTeamAssignmentsFromHighlander() throws Exception {

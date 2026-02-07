@@ -87,6 +87,10 @@ checkstyle {
     configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
 }
 
+tasks.withType(Checkstyle).configureEach {
+    exclude '**/module-info.java'
+}
+
 pmd {
     toolVersion = '6.55.0'
     ruleSetFiles = files("$rootDir/config/pmd/pmd-ruleset.xml")

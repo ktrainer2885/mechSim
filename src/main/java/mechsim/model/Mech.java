@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+// Data model for a BattleMech parsed from a .mtf file.
 public class Mech {
     private String chassis;
 
@@ -142,10 +143,12 @@ public class Mech {
         this.internalStructure = internalStructure;
     }
 
+    // Return a copy to prevent external mutation.
     public Map<String, Integer> getArmorByLocation() {
         return new LinkedHashMap<>(armorByLocation);
     }
 
+    // Store a copy to keep internal state isolated.
     public void setArmorByLocation(Map<String, Integer> armorByLocation) {
         this.armorByLocation = new LinkedHashMap<>(armorByLocation);
     }
@@ -154,10 +157,12 @@ public class Mech {
         this.armorByLocation.put(location, value);
     }
 
+    // Return a copy to prevent external mutation.
     public List<Weapon> getWeapons() {
         return new ArrayList<>(weapons);
     }
 
+    // Store a copy to keep internal state isolated.
     public void setWeapons(List<Weapon> weapons) {
         this.weapons = new ArrayList<>(weapons);
     }
@@ -246,10 +251,12 @@ public class Mech {
         this.role = role;
     }
 
+    // Return a copy to prevent external mutation.
     public List<String> getQuirks() {
         return new ArrayList<>(quirks);
     }
 
+    // Store a copy to keep internal state isolated.
     public void setQuirks(List<String> quirks) {
         this.quirks = new ArrayList<>(quirks);
     }

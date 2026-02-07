@@ -169,6 +169,11 @@ The entire logging system feeds into the machine learning pipeline. Logs become:
 BattleTechSim is being designed from the ground up to support long-term growth, experimentation, and modular replacement
 of subsystems. Key areas of extensibility include:
 
+### Static Analysis Guardrails
+
+- When package boundaries are formalized, enable PMD's `LoosePackageCoupling` rule with a defined allowlist.
+- Until the module boundaries are stable, keep the rule disabled to avoid false positives and churn.
+
 ### 1. Rule Variants & Rulebook Swapping
 
 - The simulation engine supports toggling or replacing rule modules (e.g., movement, targeting, heat).

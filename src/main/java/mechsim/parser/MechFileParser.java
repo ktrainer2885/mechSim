@@ -27,6 +27,7 @@ public class MechFileParser {
      * @return Fully populated Mech object
      * @throws IOException If file cannot be read
      */
+    // Parse a .mtf file into a Mech object in two passes: stats then weapons.
     public static Mech parse(Path path) throws IOException {
         final List<String> lines = Files.readAllLines(path);
         final Mech mech = new Mech();
@@ -200,6 +201,7 @@ public class MechFileParser {
      * @param lines the file lines
      * @param mech the mech being populated
      */
+    // The weapons section is a separate list, so we scan it after the main pass.
     private static void parseWeaponsSection(List<String> lines, Mech mech) {
         boolean inWeaponsSection = false;
         boolean weaponSectionFound = false;

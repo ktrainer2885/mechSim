@@ -5,6 +5,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+// Helper for locating test resource files by relative path.
 public class TestResources {
 
     public static Path mechFile(String filename) throws Exception {
@@ -19,6 +20,7 @@ public class TestResources {
         return getPath("logs/" + filename);
     }
 
+    // Resolve a classpath resource into a filesystem Path.
     private static Path getPath(String relativePath) throws Exception {
         final URL resource = TestResources.class.getClassLoader().getResource(relativePath);
         assertNotNull(resource, "Test resource not found: " + relativePath);

@@ -5,6 +5,7 @@ public class Weapon {
 
     private final String location;
 
+    // Simple value object for a weapon and its mounting location.
     public Weapon(String name, String location) {
         this.name = name;
         this.location = location;
