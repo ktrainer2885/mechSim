@@ -6,7 +6,7 @@ analysis, and support machine learning for mech evaluation and performance predi
 
 ---
 
-## 🔧 Features
+## Features
 
 - Turn-based simulation engine following BMM rules
 - Support for 1v1 and N vs N battles
@@ -17,26 +17,26 @@ analysis, and support machine learning for mech evaluation and performance predi
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 mechSim/
-├── src/
-│   ├── main/java/com/mechsim/       # Source code
-│   └── test/java/com/mechsim/       # Unit tests
-├── docs/                            # Design documentation
-├── data/                            # Mech files, scenario configs
-├── logs/                            # Output combat logs
-├── scripts/                         # Future ML or analytics helpers
-├── build.gradle                     # Gradle build file
-├── settings.gradle                  # Gradle project settings
-├── README.md                        # Project overview (this file)
-└── .gitignore
+ src/
+    main/java/mechsim/       # Source code
+    test/java/mechsim/       # Unit tests
+ docs/                            # Design documentation
+ data/                            # Mech files, scenario configs
+ logs/                            # Output combat logs
+ scripts/                         # Future ML or analytics helpers
+ build.gradle                     # Gradle build file
+ settings.gradle                  # Gradle project settings
+ README.md                        # Project overview (this file)
+ .gitignore
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -61,7 +61,7 @@ mechSim/
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 Design and architecture documents can be found in the `docs/` folder:
 
@@ -83,4 +83,6 @@ Design and architecture documents can be found in the `docs/` folder:
 ## 📄 License
 
 TBD (Private for now or insert open-source license here)
+
+
 

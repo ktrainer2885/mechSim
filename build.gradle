@@ -62,7 +62,8 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.mechsim.Main'
+    mainModule = 'mechsim'
+    mainClass = 'mechsim.Main'
 }
 
 testing {

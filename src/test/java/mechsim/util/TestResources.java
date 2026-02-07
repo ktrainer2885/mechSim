@@ -1,4 +1,4 @@
-package mechsim.util.util;
+package mechsim.util;
 
 import java.net.URL;
 import java.nio.file.Path;
@@ -20,7 +20,7 @@ public class TestResources {
     }
 
     private static Path getPath(String relativePath) throws Exception {
-        URL resource = TestResources.class.getClassLoader().getResource(relativePath);
+        final URL resource = TestResources.class.getClassLoader().getResource(relativePath);
         assertNotNull(resource, "Test resource not found: " + relativePath);
         return Path.of(resource.toURI());
     }

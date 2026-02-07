@@ -2,7 +2,7 @@ package mechsim.parser;
 
 import mechsim.model.Mech;
 import mechsim.model.Weapon;
-import mechsim.util.util.TestResources;
+import mechsim.util.TestResources;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -14,16 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class MechFileParserTest {
     @Test
     void testParseHighlander() throws Exception {
-        Path path = TestResources.mechFile("Highlander HGN-733.mtf");
+        final Path path = TestResources.mechFile("Highlander HGN-733.mtf");
 
-        Mech mech = MechFileParser.parse(path);
+        final Mech mech = MechFileParser.parse(path);
 
         // Test basic mech info
         assertEquals("Highlander", mech.getChassis());
         assertEquals("HGN-733", mech.getModel());
         assertEquals(90, mech.getMass());
         assertEquals("Inner Sphere", mech.getTechBase());
-        assertEquals(1517, mech.getMULid());
+        assertEquals(1517, mech.getMulId());
         assertEquals("Biped", mech.getConfig());
         assertEquals(2866, mech.getEra());
         assertEquals("1", mech.getRules());
@@ -54,14 +54,25 @@ public class MechFileParserTest {
         assertTrue(mech.getQuirks().contains("difficult_eject"));
 
         // Test weapons
-        List<Weapon> weapons = mech.getWeapons();
+        final List<Weapon> weapons = mech.getWeapons();
         assertEquals(5, weapons.size());
 
         // Check that all weapons from the MTF file are present
-        assertTrue(weapons.stream().anyMatch(w -> w.getName().equals("Medium Laser") && w.getLocation().equals("Right Torso")));
-        assertTrue(weapons.stream().anyMatch(w -> w.getName().equals("Medium Laser") && w.getLocation().equals("Right Torso")));
-        assertTrue(weapons.stream().anyMatch(w -> w.getName().equals("LRM 20") && w.getLocation().equals("Left Torso")));
-        assertTrue(weapons.stream().anyMatch(w -> w.getName().equals("SRM 6") && w.getLocation().equals("Left Arm")));
-        assertTrue(weapons.stream().anyMatch(w -> w.getName().equals("Autocannon/10") && w.getLocation().equals("Right Arm")));
+        assertEquals(2, weapons.stream()
+                .filter(w -> w.getName().equals("Medium Laser")
+                        && w.getLocation().equals("Right Torso"))
+                .count());
+        assertTrue(
+                weapons.stream().anyMatch(w -> w.getName().equals("LRM 20")
+                        && w.getLocation().equals("Left Torso"))
+        );
+        assertTrue(
+                weapons.stream().anyMatch(w -> w.getName().equals("SRM 6")
+                        && w.getLocation().equals("Left Arm"))
+        );
+        assertTrue(
+                weapons.stream().anyMatch(w -> w.getName().equals("Autocannon/10")
+                        && w.getLocation().equals("Right Arm"))
+        );
     }
 }

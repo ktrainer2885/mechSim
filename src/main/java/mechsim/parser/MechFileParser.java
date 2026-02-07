@@ -15,6 +15,7 @@ import java.util.List;
 public class MechFileParser {
     // Constants for parsing
     private static final String SECTION_SEPARATOR = ":";
+
     private static final String EMPTY_SLOT = "-Empty-";
 
     // We may add weapon standardization in a separate component later
@@ -27,15 +28,15 @@ public class MechFileParser {
      * @throws IOException If file cannot be read
      */
     public static Mech parse(Path path) throws IOException {
-        List<String> lines = Files.readAllLines(path);
-        Mech mech = new Mech();
+        final List<String> lines = Files.readAllLines(path);
+        final Mech mech = new Mech();
 
         // Track the current section being parsed
         String currentSection = null;
 
         // First pass to parse basic info, armor, and movement
         for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i).trim();
+            final String line = lines.get(i).trim();
 
             // Skip empty lines and comments
             if (line.isEmpty() || line.startsWith("#")) {
@@ -50,10 +51,10 @@ public class MechFileParser {
 
             // Parse key-value pairs
             if (line.contains(SECTION_SEPARATOR)) {
-                String[] parts = line.split(SECTION_SEPARATOR, 2);
+                final String[] parts = line.split(SECTION_SEPARATOR, 2);
                 if (parts.length == 2) {
-                    String key = parts[0].trim();
-                    String value = parts[1].trim();
+                    final String key = parts[0].trim();
+                    final String value = parts[1].trim();
                     parseKeyValuePair(mech, key, value, currentSection);
                 }
             }
@@ -66,18 +67,23 @@ public class MechFileParser {
     }
 
     /**
-     * Parses a key-value pair from the MTF file
+     * Parses a key-value pair from the MTF file.
+     *
+     * @param mech the mech being populated
+     * @param key the key name from the file
+     * @param value the raw value string
+     * @param currentSection the section context if any
      */
     private static void parseKeyValuePair(Mech mech, String key, String value, String currentSection) {
         try {
-            String keyLower = key.toLowerCase();
+            final String keyLower = key.toLowerCase();
 
             // Handling based on the key
             switch (keyLower) {
                 // Basic mech info
                 case "chassis" -> mech.setChassis(value);
                 case "model" -> mech.setModel(value);
-                case "mul id" -> mech.setMULid(Integer.parseInt(value));
+                case "mul id" -> mech.setMulId(Integer.parseInt(value));
                 case "config" -> mech.setConfig(value);
                 case "techbase" -> mech.setTechBase(value);
                 case "era" -> mech.setEra(Integer.parseInt(value));
@@ -95,7 +101,7 @@ public class MechFileParser {
 
                 // Movement
                 case "walk mp" -> {
-                    int walkMP = Integer.parseInt(value);
+                    final int walkMP = Integer.parseInt(value);
                     mech.setWalkingMP(walkMP);
                     mech.setRunningMP((int) Math.ceil(walkMP * 1.5));
                 }
@@ -108,7 +114,7 @@ public class MechFileParser {
                 case "armor" -> mech.setArmorType(value);
 
                 // Quirks
-                case "quirk" -> mech.getQuirks().add(value);
+                case "quirk" -> mech.addQuirk(value);
 
                 // Weapons section indicator
                 case "weapons" -> {
@@ -124,15 +130,26 @@ public class MechFileParser {
     }
 
     /**
-     * Handles special entries like armor values
+     * Handles special entries like armor values.
+     *
+     * @param mech the mech being populated
+     * @param key the key from the file
+     * @param value the value from the file
+     * @param keyLower the lowercase key
+     * @param currentSection the section context
      */
-    private static void handleSpecialEntries(Mech mech, String key, String value, String keyLower, String currentSection) {
+    private static void handleSpecialEntries(
+            Mech mech,
+            String key,
+            String value,
+            String keyLower,
+            String currentSection) {
         // Handle armor values (e.g., "LA Armor:30")
         if (key.endsWith("Armor") && key.length() > 6) {
-            String location = key.substring(0, key.length() - 6).toUpperCase();
+            final String location = key.substring(0, key.length() - 6).toUpperCase();
             try {
-                int armorValue = Integer.parseInt(value);
-                mech.getArmorByLocation().put(location, armorValue);
+                final int armorValue = Integer.parseInt(value);
+                mech.putArmorByLocation(location, armorValue);
             } catch (NumberFormatException e) {
                 System.err.println("Bad armor value: " + key + SECTION_SEPARATOR + value);
             }
@@ -141,10 +158,13 @@ public class MechFileParser {
     }
 
     /**
-     * Parses engine information
+     * Parses engine information.
+     *
+     * @param mech the mech being populated
+     * @param value the raw engine value string
      */
     private static void parseEngine(Mech mech, String value) {
-        String[] parts = value.split(" ", 2);
+        final String[] parts = value.split(" ", 2);
         try {
             mech.setEngineRating(Integer.parseInt(parts[0]));
             if (parts.length > 1) {
@@ -156,10 +176,13 @@ public class MechFileParser {
     }
 
     /**
-     * Parses heat sink information
+     * Parses heat sink information.
+     *
+     * @param mech the mech being populated
+     * @param value the raw heat sinks value string
      */
     private static void parseHeatSinks(Mech mech, String value) {
-        String[] parts = value.split(" ", 2);
+        final String[] parts = value.split(" ", 2);
         try {
             mech.setHeatSinks(Integer.parseInt(parts[0]));
             if (parts.length > 1) {
@@ -172,7 +195,10 @@ public class MechFileParser {
 
 
     /**
-     * Specifically parses the Weapons section of the MTF file
+     * Specifically parses the Weapons section of the MTF file.
+     *
+     * @param lines the file lines
+     * @param mech the mech being populated
      */
     private static void parseWeaponsSection(List<String> lines, Mech mech) {
         boolean inWeaponsSection = false;
@@ -181,7 +207,9 @@ public class MechFileParser {
 
         for (String line : lines) {
             line = line.trim();
-            if (line.isEmpty() || line.startsWith("#")) continue;
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
 
             // Check for the Weapons section header and count
             if (line.startsWith("Weapons:")) {
@@ -205,11 +233,11 @@ public class MechFileParser {
 
                 // Parse weapon line (format: "Weapon Name, Location")
                 if (line.contains(",")) {
-                    String[] weaponParts = line.split(",", 2);
+                    final String[] weaponParts = line.split(",", 2);
                     if (weaponParts.length == 2) {
-                        String weaponName = weaponParts[0].trim();
-                        String location = weaponParts[1].trim();
-                        mech.getWeapons().add(new Weapon(weaponName, location));
+                        final String weaponName = weaponParts[0].trim();
+                        final String location = weaponParts[1].trim();
+                        mech.addWeapon(new Weapon(weaponName, location));
                     }
                 }
             }

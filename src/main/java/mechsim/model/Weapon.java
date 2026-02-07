@@ -2,6 +2,7 @@ package mechsim.model;
 
 public class Weapon {
     private final String name;
+
     private final String location;
 
     public Weapon(String name, String location) {

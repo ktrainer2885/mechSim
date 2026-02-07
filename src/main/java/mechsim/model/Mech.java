@@ -7,14 +7,21 @@ import java.util.Map;
 
 public class Mech {
     private String chassis;
+
     private String model;
-    private int MULid;
+
+    private int mulId;
 
     private String config;
+
     private String techBase;
+
     private int era;
+
     private String source;
+
     private String rules;
+
     private String role;
 
     private List<String> quirks = new ArrayList<>();
@@ -22,22 +29,28 @@ public class Mech {
     private int mass;
 
     private int engineRating;
+
     private String engineType;
+
     private String internalStructure;
+
     private Map<String, Integer> internalStructureValues = new LinkedHashMap<>();
 
     private String mynomerType;
+
     private String heatSinkType;
 
     private int heatSinks;
 
     private int walkingMP;
+
     private int runningMP;
+
     private int jumpingMP;
 
     private String armorType;
-    private Map<String, Integer> armorByLocation = new LinkedHashMap<>();
 
+    private Map<String, Integer> armorByLocation = new LinkedHashMap<>();
 
     private List<Weapon> weapons = new ArrayList<>();
 
@@ -130,19 +143,27 @@ public class Mech {
     }
 
     public Map<String, Integer> getArmorByLocation() {
-        return armorByLocation;
+        return new LinkedHashMap<>(armorByLocation);
     }
 
     public void setArmorByLocation(Map<String, Integer> armorByLocation) {
-        this.armorByLocation = armorByLocation;
+        this.armorByLocation = new LinkedHashMap<>(armorByLocation);
+    }
+
+    public void putArmorByLocation(String location, int value) {
+        this.armorByLocation.put(location, value);
     }
 
     public List<Weapon> getWeapons() {
-        return weapons;
+        return new ArrayList<>(weapons);
     }
 
     public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
+        this.weapons = new ArrayList<>(weapons);
+    }
+
+    public void addWeapon(Weapon weapon) {
+        this.weapons.add(weapon);
     }
 
     public String getHeatSinkType() {
@@ -153,12 +174,12 @@ public class Mech {
         this.heatSinkType = heatSinkType;
     }
 
-    public int getMULid() {
-        return MULid;
+    public int getMulId() {
+        return mulId;
     }
 
-    public void setMULid(int MULid) {
-        this.MULid = MULid;
+    public void setMulId(int mulId) {
+        this.mulId = mulId;
     }
 
     public String getEngineType() {
@@ -170,11 +191,11 @@ public class Mech {
     }
 
     public Map<String, Integer> getInternalStructureValues() {
-        return internalStructureValues;
+        return new LinkedHashMap<>(internalStructureValues);
     }
 
     public void setInternalStructureValues(Map<String, Integer> internalStructureValues) {
-        this.internalStructureValues = internalStructureValues;
+        this.internalStructureValues = new LinkedHashMap<>(internalStructureValues);
     }
 
     public String getMynomerType() {
@@ -226,11 +247,15 @@ public class Mech {
     }
 
     public List<String> getQuirks() {
-        return quirks;
+        return new ArrayList<>(quirks);
     }
 
     public void setQuirks(List<String> quirks) {
-        this.quirks = quirks;
+        this.quirks = new ArrayList<>(quirks);
+    }
+
+    public void addQuirk(String quirk) {
+        this.quirks.add(quirk);
     }
 
     @Override
